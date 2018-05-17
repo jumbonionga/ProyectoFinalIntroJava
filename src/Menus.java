@@ -1,5 +1,7 @@
 
 public class Menus {
+	
+	// DISPLAY DEL MENU PRINCIPAL
 	public void MenuPrincipal()
 	{
 		System.out.println("TIENDAS BICIMUNDO");
@@ -14,6 +16,7 @@ public class Menus {
 		System.out.println("8. Salir");
 	}
 	
+	// DISPLAY DE LOS MENUES DEPENDIENDO DE LA OPCIÓN SELECCIONADA
 	public void SubMenu(String menu)
 	{
 		if(menu.equals("bicicletas"))
