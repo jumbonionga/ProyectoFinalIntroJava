@@ -37,6 +37,11 @@ public class Articulo {
 		this.nombre = nombre;
 	}
 	
+	public void setnombre(String nombre)
+	{
+		this.nombre = nombre;
+	}
+	
 	public String getnombre()
 	{
 		return this.nombre;
@@ -70,14 +75,22 @@ public class Articulo {
 		else if(opcion == 2)
 			this.masculino = false;
 	}
-		
+	
+	public void setgenero(int nuevoGenero)
+	{
+		if(nuevoGenero == 1)
+			this.masculino = true;
+		else if(nuevoGenero == 2)
+			this.masculino = false;
+	}
+	
 	public String getgenero()
 	{
 		String genero = "";
 		if(this.masculino == true)
-			genero = "masculino";
+			genero = "Masculino";
 		else if(this.masculino == false)
-			genero = "femenino";
+			genero = "Femenino";
 		return genero;
 	}
 	
@@ -104,6 +117,11 @@ public class Articulo {
 			}
 		}
 		this.talla = opcion;
+	}
+	
+	public void settalla(int nuevaTalla)
+	{
+		this.talla = nuevaTalla;
 	}
 	
 	public String gettalla()
@@ -149,13 +167,18 @@ public class Articulo {
 		this.tipo = opcion;
 	}
 
+	public void settipo(int nuevoTipo)
+	{
+		this.tipo = nuevoTipo;
+	}
+	
 	public String gettipo()
 	{
 		String categoria = "";
 		switch(this.tipo)
 		{
 		case 1:
-			categoria = "Monta\u00F1esa";
+			categoria = "Monta\u00F1a";
 			break;
 		case 2:
 			categoria = "Ruta";
@@ -178,6 +201,11 @@ public class Articulo {
 		this.fabricante = sinput;
 	}
 	
+	public void setfabricante(String nuevoFabricante)
+	{
+		this.fabricante = nuevoFabricante;
+	}
+	
 	public String getfabricante()
 	{
 		return this.fabricante;
@@ -198,6 +226,11 @@ public class Articulo {
 				System.out.println("Por favor ingrese hasta "+limite+" caracteres");
 		}
 		this.descripcion = sinput;
+	}
+	
+	public void setdescripcion(String nuevaDescripcion)
+	{
+		this.descripcion = nuevaDescripcion;
 	}
 	
 	public String getdescripcion()
@@ -226,6 +259,11 @@ public class Articulo {
 		this.precio = fprecio;
 	}
 	
+	public void setprecio (float nuevoPrecio)
+	{
+		this.precio = nuevoPrecio;
+	}
+	
 	public float getprecio()
 	{
 		return this.precio;
@@ -240,7 +278,10 @@ public class Articulo {
 			try {
 				System.out.println("Ingrese costo");
 				fcosto = input.nextFloat();
-				valido = true;
+				if(fcosto > 0)
+					valido = true;
+				else
+					System.out.println("Por favor ingresar un valor adecuado");
 			} catch (InputMismatchException e) 
 			{
 				System.out.println("Por favor ingresar un valor adecuado");
@@ -249,6 +290,11 @@ public class Articulo {
 			}
 		}
 		this.costo = fcosto;
+	}
+	
+	public void setcosto(float nuevoCosto)
+	{
+		this.costo = nuevoCosto;
 	}
 	
 	public float getcosto()
@@ -277,6 +323,11 @@ public class Articulo {
 			}
 		}
 		this.existencia = existencias;
+	}
+	
+	public void setexistencias(int nuevaExistencia)
+	{
+		this.existencia = nuevaExistencia;
 	}
 	
 	public int getexistencias()

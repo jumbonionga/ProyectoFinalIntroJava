@@ -27,8 +27,6 @@ public class Main {
 				case 1: {
 					if(inventory == null)
 						inventory = new Inventario(); 
-					else
-						System.out.println("Ya existe el objeto");
 					inventory.displaymenu();
 				}
 				break;
