@@ -34,6 +34,9 @@ public class Inventario {
 			case 2:
 				mostrararticulo();
 				break;
+			case 3:
+				buscarmenu();
+				break;
 			case 5:
 				borrararticulo();
 				break;
@@ -110,21 +113,84 @@ public class Inventario {
 	{
 		System.out.println("C\u00F3digo art\u00EDculo: " + articulo.getcodigo());
 		System.out.println("Nombre articulo: " + articulo.getnombre());
-		System.out.println("Genero: " + articulo.getgenero());
+		System.out.println("G\u00E9nero: " + articulo.getgenero());
 		System.out.println("Talla: " + articulo.gettalla());
 		System.out.println("Tipo: " + articulo.gettipo());
 		System.out.println("Fabricante: " + articulo.getfabricante());
-		System.out.println("Descripcion: " + articulo.getdescripcion());
+		System.out.println("Descripci\u00F3n: " + articulo.getdescripcion());
 		System.out.println("Precio: " + articulo.getprecio());
 		System.out.println("Costo: " + articulo.getcosto());
 		System.out.println("Existencias: " + articulo.getexistencias());
 	}
 
-	private void buscar()
+	private void buscarmenu()
 	{
 		int opcion = 0;
-		
+		boolean valido = false;
+		if(cantidad == 0)
+			System.out.println("El inventario esta vac\u00EDo");
+		else
+		{
+			while (valido == false) 
+			{
+				try {
+					System.out.println("B\u00DASQUEDA DE ART\u00CDCULO");
+					System.out.println("Ingrese el campo que desea buscar para encontrar el art\u00EDculo:");
+					System.out.println("1: Nombre");
+					System.out.println("2: G\u00E9nero");
+					System.out.println("3: Talla");
+					System.out.println("4: Tipo");
+					System.out.println("5: Fabricante");
+					System.out.println("6: Descripci\u00F3n");
+					System.out.println("7: Precio");
+					System.out.println("8: Costo");
+					System.out.println("9: Existencias");
+					opcion = input.nextInt();
+					if(opcion < 1 || opcion > 9)
+						System.out.println("Por favor introduzca un valor adecuado");
+					else
+						valido = true;
+				} catch (InputMismatchException e) 
+				{
+					System.out.println("Por favor introduzca un valor adecuado");
+					input.next();
+				}
+			}
+		}
+		buscar(opcion);
 	}
+	
+	private void buscar(int opcion)
+	{
+		input.nextLine();
+		switch(opcion)
+		{
+		case 1: 
+			{
+				String nombre = "";
+				System.out.println("Ingrese el nombre del art\u00EDculo a buscar:");
+				nombre = input.nextLine();
+				for(int i = 0; i < cantidad; i++)
+				{
+					if(inventario[i].getnombre().equals(nombre))
+					{
+						System.out.println("\u00A1Art\u00EDculo encontrado!");
+						detalles(inventario[i]);
+					}
+					else
+						System.out.println("Art\u00EDculo no encontrado");
+				}
+			}
+			break;
+		case 2:
+			{
+				int genero = 0;
+				
+			}
+			break;
+		}
+	}
+	
  	private void borrararticulo()
 	{
 		int codigo = 0;

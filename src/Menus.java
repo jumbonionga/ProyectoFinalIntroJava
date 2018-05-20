@@ -27,8 +27,8 @@ public class Menus {
 		System.out.println("1. Agregar " + menu);
 		System.out.println("2. Mostrar " + menu);
 /*		System.out.println("3. Buscar " + menu);
-		System.out.println("4. Modificar " + menu);*/
-		System.out.println("5. Borrar o rehabilitar" + menu);
+/*		System.out.println("4. Modificar " + menu);*/
+		System.out.println("5. Borrar o rehabilitar " + menu);
 		System.out.println("6. Regresar al menu anterior");
 	}
 }
