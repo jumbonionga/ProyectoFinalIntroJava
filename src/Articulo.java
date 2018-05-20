@@ -45,9 +45,26 @@ public class Articulo {
 	public void setgenero()
 	{
 		int opcion = 0;
-		System.out.println("\u00BFEs masculino?");
-		System.out.println("1: Si\t2: No");
-		opcion = input.nextInt();
+		boolean valido = false;
+		
+		while (valido == false) 
+		{
+			try 
+			{
+				System.out.println("\u00BFEs masculino?");
+				System.out.println("1: Si\t2: No");
+				opcion = input.nextInt();
+				if(opcion == 1 || opcion == 2)
+					valido = true;
+				else
+					System.out.println("Por favor ingresar un valor adecuado");
+			} catch (InputMismatchException e) 
+			{
+				System.out.println("Por favor ingresar un valor adecuado");
+				valido = false;
+				input.next();
+			}
+		}
 		if(opcion == 1)
 			this.masculino = true;
 		else if(opcion == 2)
@@ -67,9 +84,25 @@ public class Articulo {
 	public void settalla()
 	{
 		int opcion = 0;
-		System.out.println("Ingrese la talla");
-		System.out.println("1: Small\t2: Medium\t3: Large");
-		opcion = input.nextInt();
+		boolean valido = false;
+		while (valido == false) 
+		{
+			try 
+			{
+				System.out.println("Ingrese la talla");
+				System.out.println("1: Peque\u00F1a\t2: Mediana\t3: Grande");
+				opcion = input.nextInt();
+				if(opcion < 1 || opcion > 3)
+					System.out.println("Por favor ingresar un valor adecuado");
+				else
+					valido = true;
+			} catch (InputMismatchException e) 
+			{
+				System.out.println("Por favor ingresar un valor adecuado");
+				valido = false;
+				input.next();
+			}
+		}
 		this.talla = opcion;
 	}
 	
@@ -79,13 +112,13 @@ public class Articulo {
 		switch(this.talla)
 		{
 		case 1:
-			talla = "Small";
+			talla = "Peque\u00F1a";
 			break;
 		case 2:
-			talla = "Medium";
+			talla = "Mediana";
 			break;
 		case 3:
-			talla = "Large";
+			talla = "Grande";
 			break;
 		}
 		return talla;
@@ -94,9 +127,25 @@ public class Articulo {
 	public void settipo()
 	{
 		int opcion = 0;
-		System.out.println("Ingrese la categoria");
-		System.out.println("1: Monta\u00F1a\t2: Ruta\t\t3: Ciudad\t4: Infantil");
-		opcion = input.nextInt();
+		boolean valido = false;
+		while (valido == false) 
+		{
+			try 
+			{
+				System.out.println("Ingrese la categoria");
+				System.out.println("1: Monta\u00F1a\t2: Ruta\t\t3: Ciudad\t4: Infantil");
+				opcion = input.nextInt();
+				if(opcion < 1 || opcion > 4)
+					System.out.println("Por favor ingresar un valor adecuado");
+				else
+					valido = true;
+			} catch (InputMismatchException e) 
+			{
+				System.out.println("Por favor ingresar un valor adecuado");
+				valido = false;
+				input.next();
+			}
+		}
 		this.tipo = opcion;
 	}
 
@@ -136,8 +185,18 @@ public class Articulo {
 
 	public void setdescripcion()
 	{
-		System.out.println("Ingrese descripcion");
-		String sinput = input.nextLine();
+		boolean valido = false;
+		String sinput = "";
+		int limite = 200;
+		while (valido == false) 
+		{
+			System.out.println("Ingrese descripcion ("+limite+" caracteres maximo)");
+			sinput = input.nextLine();
+			if(sinput.length() <= limite)
+				valido = true;
+			else
+				System.out.println("Por favor ingrese hasta "+limite+" caracteres");
+		}
 		this.descripcion = sinput;
 	}
 	
@@ -148,8 +207,22 @@ public class Articulo {
 
 	public void setprecio()
 	{
-		System.out.println("Ingrese precio");
-		float fprecio = input.nextFloat();
+		boolean valido = false;
+		float fprecio = 0.00f;
+		while (valido == false) 
+		{
+			try 
+			{
+				System.out.println("Ingrese precio");
+				fprecio = input.nextFloat();
+				valido = true;
+			} catch (InputMismatchException e) 
+			{
+				System.out.println("Por favor ingresar un valor adecuado");
+				valido = false;
+				input.next();
+			}
+		}
 		this.precio = fprecio;
 	}
 	
@@ -160,8 +233,21 @@ public class Articulo {
 	
 	public void setcosto()
 	{
-		System.out.println("Ingrese costo");
-		float fcosto = input.nextFloat();
+		boolean valido = false;
+		float fcosto = 0.00f;
+		while (valido == false) 
+		{
+			try {
+				System.out.println("Ingrese costo");
+				fcosto = input.nextFloat();
+				valido = true;
+			} catch (InputMismatchException e) 
+			{
+				System.out.println("Por favor ingresar un valor adecuado");
+				valido = false;
+				input.next();
+			}
+		}
 		this.costo = fcosto;
 	}
 	
@@ -172,8 +258,24 @@ public class Articulo {
 	
 	public void setexistencias()
 	{
-		System.out.println("Ingrese existencias:");
-		int existencias = input.nextInt();
+		boolean valido = false;
+		int existencias = 0;
+		while (valido == false) 
+		{
+			try {
+				System.out.println("Ingrese existencias:");
+				existencias = input.nextInt();
+				if(existencias >= 0)
+					valido = true;
+				else
+					System.out.println("Por favor ingresar un valor adecuado");
+			} catch (InputMismatchException e) 
+			{
+				System.out.println("Por favor ingresar un valor adecuado");
+				valido = false;
+				input.next();
+			}
+		}
 		this.existencia = existencias;
 	}
 	
@@ -191,5 +293,18 @@ public class Articulo {
 	public int getcodigo()
 	{
 		return this.codigo;
+	}
+
+	public void setborrado()
+	{
+		if(this.borrado == false)
+			this.borrado = true;
+		else if(this.borrado = true)
+			this.borrado = false;
+	}
+
+	public boolean getborrado()
+	{
+		return this.borrado;
 	}
 }
