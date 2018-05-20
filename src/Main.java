@@ -10,6 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Menus menudisplay = new Menus();
+		Inventario inventory = null;
 		Scanner input = new Scanner(System.in);
 		int opcion = 0;
 		do {
@@ -24,8 +25,11 @@ public class Main {
 			switch(opcion)
 			{
 				case 1: {
-					menudisplay.SubMenu("bicicletas");
-					int submenuoption = input.nextInt();
+					if(inventory == null)
+						inventory = new Inventario(); 
+					else
+						System.out.println("Ya existe el objeto");
+					inventory.displaymenu();
 				}
 				break;
 				
@@ -56,6 +60,6 @@ public class Main {
 					opcion = 0;
 				}
 			}
-		} while (opcion != 8);
+		} while (opcion != FIN);
 	}
 }
