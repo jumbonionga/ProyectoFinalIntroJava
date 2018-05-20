@@ -11,6 +11,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		Menus menudisplay = new Menus();
 		Inventario inventory = null;
+		Clientes clientes = null;
 		Scanner input = new Scanner(System.in);
 		int opcion = 0;
 		do {
@@ -31,7 +32,11 @@ public class Main {
 				}
 				break;
 				
-				case 2: menudisplay.SubMenu("cliente");
+				case 2: {
+					if(clientes == null)
+						clientes = new Clientes();
+					clientes.displaymenu();
+				}
 				break;
 				
 				case 3: menudisplay.SubMenu("empleado");
