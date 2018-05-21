@@ -12,6 +12,8 @@ public class Main {
 		Menus menudisplay = new Menus();
 		Inventario inventory = null;
 		Clientes clientes = null;
+		Empleados empleados = null;
+		Proveedores proveedores = null;
 		Scanner input = new Scanner(System.in);
 		int opcion = 0;
 		do {
@@ -39,10 +41,18 @@ public class Main {
 				}
 				break;
 				
-				case 3: menudisplay.SubMenu("empleado");
+				case 3: {
+					if(empleados == null)
+						empleados = new Empleados();
+					empleados.displaymenu();
+				}
 				break;
 				
-				case 4: menudisplay.SubMenu("proveedor");
+				case 4: {
+					if(proveedores == null)
+						proveedores = new Proveedores();
+					proveedores.displaymenu();
+				}
 				break;
 				
 				case 5: menudisplay.SubMenu("compra");

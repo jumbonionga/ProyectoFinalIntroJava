@@ -3,7 +3,7 @@ import java.time.*;
 public class Empleado {
 	private int codigo;
 	private String nombre;
-	private String cargo; //vendedor, gerente, mecánico, logística, repartidor, asistente
+	private String cargo;
 	private LocalDate nacimiento;
 	private LocalDate contratacion;
 	private boolean masculino;
@@ -17,7 +17,7 @@ public class Empleado {
 	public Empleado() {
 		codigo = -1;
 		nombre = "";
-		cargo = ""; //vendedor, gerente, mecánico, logística, repartidor, asistente
+		cargo = "";
 		nacimiento = LocalDate.now();
 		contratacion = LocalDate.now();
 		masculino = false;

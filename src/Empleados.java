@@ -3,13 +3,13 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 public class Empleados {
-	Empleado[] empleados;
-	Scanner input;
+	private Empleado[] empleados;
+	private Scanner input;
 	int cantidad;
-	int opcion;
-	final int LIMITE = 100;
-	final int SALIR = 6;
-	Menus menu;
+	private int opcion;
+	private final int LIMITE = 100;
+	private final int SALIR = 6;
+	private Menus menu;
 	
 	public Empleados() {
 		cantidad = 0;
@@ -86,7 +86,7 @@ public class Empleados {
 	
 	public void detalles(Empleado empleado) {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		System.out.println("C\u00F3digo cliente: "+empleado.getcodigo());
+		System.out.println("C\u00F3digo empleado: "+empleado.getcodigo());
 		System.out.println("Nombre: " + empleado.getnombre());
 		System.out.println("Cargo: " + empleado.getcargo());
 		System.out.println("Nacimiento: " + format.format(empleado.getnacimiento()).toString());
@@ -159,7 +159,7 @@ public class Empleados {
 					System.out.println("10: Sueldo");
 					System.out.println("11: Regresar al menu anterior");
 					opcion = input.nextInt();
-					if(opcion < 1 || opcion > 8)
+					if(opcion < 1 || opcion > 11)
 						System.out.println("Por favor introduzca un valor adecuado");
 					else
 						valido = true;
@@ -387,7 +387,7 @@ public class Empleados {
 		case 8:
 		{
 			String direccion = "";
-			System.out.println("Ingrese el direcci\u00F3on el empleado a buscar:");
+			System.out.println("Ingrese la direcci\u00F3on del empleado a buscar:");
 			direccion = input.nextLine();
 			for(int i = 0; i < cantidad; i++)
 			{
@@ -598,6 +598,7 @@ public class Empleados {
  				int telefono = menu.telefono();
  				empleado.settelefono(telefono);
  			}
+ 			break;
  			
  			case 7:
  			{
@@ -624,6 +625,7 @@ public class Empleados {
  				boolean casado = menu.casado();
  				empleado.setcasado(casado);
  			}
+ 			break;
  			
  			case 10:
  			{
