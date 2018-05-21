@@ -59,8 +59,8 @@ public class Empleados {
 		menu.agregaritem("empleado");
 		String nombre = menu.ingresonombre("empleado");
 		int cargo = menu.cargo();
-		LocalDate nacimiento = menu.fechanacimiento();
-		LocalDate contratacion = menu.fechacontratacion();
+		LocalDate nacimiento = menu.fecha("fecha de nacimiento");
+		LocalDate contratacion = menu.fecha("fecha de contratación");
 		boolean genero = menu.genero();
 		int telefono = menu.telefono();
 		String correo = menu.correo();
@@ -568,7 +568,7 @@ public class Empleados {
  			{
  				System.out.println("MODIFICAR FECHA DE NACIMIENTO");
  				System.out.println(empleado.getnacimiento());
- 				LocalDate nuevonacimiento = menu.fechanacimiento();
+ 				LocalDate nuevonacimiento = menu.fecha("fecha de nacimiento");
  				empleado.setnacimiento(nuevonacimiento);
  			}
  			break;
@@ -577,8 +577,8 @@ public class Empleados {
  			{
  				System.out.println("MODIFICAR FECHA DE CONTRATACI\u00D3N");
  				System.out.println(empleado.getcontratacion());
- 				LocalDate nuevonacimiento = menu.fechacontratacion();
- 				empleado.setnacimiento(nuevonacimiento);
+ 				LocalDate nuevacontratacion = menu.fecha("fecha de contratacion");
+ 				empleado.setnacimiento(nuevacontratacion);
  			}
  			break;
  			

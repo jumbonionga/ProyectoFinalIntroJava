@@ -60,7 +60,7 @@ public class Clientes {
 	{
 		menu.agregaritem("cliente");
 		String nombre = menu.ingresonombre("cliente");
-		LocalDate nacimiento = menu.fechanacimiento();
+		LocalDate nacimiento = menu.fecha("fecha de nacimiento");
 		boolean genero = menu.genero();
 		int NIT = menu.NIT();
 		int telefono = menu.telefono();
@@ -505,7 +505,7 @@ public class Clientes {
  			{
  				System.out.println("MODIFICAR FECHA DE NACIMIENTO");
  				System.out.println(cliente.getnacimiento());
- 				LocalDate nuevonacimiento = menu.fechanacimiento();
+ 				LocalDate nuevonacimiento = menu.fecha("fecha de nacimiento");
  				cliente.setnacimiento(nuevonacimiento);
  			}
  			break;

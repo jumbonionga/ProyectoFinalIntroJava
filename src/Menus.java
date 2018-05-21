@@ -12,8 +12,8 @@ public class Menus {
 		System.out.println("2. Clientes");
 		System.out.println("3. Empleados");
 		System.out.println("4. Proveedores");
-/*		System.out.println("5. Compras");
-		System.out.println("6. Ventas");
+		System.out.println("5. Compras");
+/*		System.out.println("6. Ventas");
 		System.out.println("7. Reportes");*/
 		System.out.println("8. Salir");
 	}
@@ -30,8 +30,12 @@ public class Menus {
 		System.out.println("2. Mostrar " + menu);
 		System.out.println("3. Buscar " + menu);
 		System.out.println("4. Modificar " + menu);
-		System.out.println("5. Borrar o rehabilitar " + menu);
-		System.out.println("6. Regresar al menu anterior");
+		if(!menu.equals("compras") && !menu.equals("ventas"))
+			System.out.println("5. Borrar o rehabilitar " + menu);
+		if(!menu.equals("compras") && !menu.equals("ventas"))
+			System.out.println("6. Regresar al menu anterior");
+		else
+			System.out.println("5. Regresar al menu anterior");
 	}
 	
 	public void agregaritem(String categoria)
@@ -169,29 +173,6 @@ public class Menus {
 			casado = false;
 		return casado;
 	}
-
-	public LocalDate fechanacimiento()
-	{
-		int year = 0, month = 0, day = 0;
-		boolean bisiesto = false;
-		int ultimodia = 31;
-		System.out.println("FECHA DE NACIMIENTO");
-		day = getday(ultimodia);
-		month = getmonth();
-		year = getyear();
-		bisiesto = getleap(year);	
-		ultimodia = getlastday(month);
-		if(bisiesto == true && month == 2)
-			ultimodia = 29;
-		if(ultimodia < day)
-		{
-			System.out.println("Por favor corregir el dia");
-			day = getday(ultimodia);
-		}
-		
-		LocalDate fechanacimiento = LocalDate.of(year,month,day);
-		return fechanacimiento;
-	}
 	
 	private int getday(int ultimodia)
 	{
@@ -326,28 +307,6 @@ public class Menus {
 		return cargo;
 	}
 
-	public LocalDate fechacontratacion() {
-		int year = 0, month = 0, day = 0;
-		boolean bisiesto = false;
-		int ultimodia = 31;
-		System.out.println("FECHA DE CONTRATACI\u00D3N");
-		day = getday(ultimodia);
-		month = getmonth();
-		year = getyear();
-		bisiesto = getleap(year);	
-		ultimodia = getlastday(month);
-		if(bisiesto == true && month == 2)
-			ultimodia = 29;
-		if(ultimodia < day)
-		{
-			System.out.println("Por favor corregir el dia");
-			day = getday(ultimodia);
-		}
-		
-		LocalDate contratacion = LocalDate.of(year,month,day);
-		return contratacion;
-	}
-
 	public double sueldo() {
 		double sueldo = 0;
 		boolean valido = false;
@@ -365,5 +324,92 @@ public class Menus {
 			}
 		}
 		return sueldo;
+	}
+
+	public int ingresocodigo(String categoria) {
+		int entry = -1;
+		boolean valido = false;
+		while(valido == false) {
+			try {
+				System.out.println("Por favor ingrese el c\u00F3digo del " + categoria + ": ");
+				entry = input.nextInt();
+				if(entry >= 0)
+					valido = true;
+				else
+					System.out.println("Por favor ingresar un valor adecuado");
+			} catch (InputMismatchException e) {
+				System.out.println("Por favor ingresar un valor adecuado");
+				input.next();
+			}
+		}
+		return entry;
+	}
+
+	public LocalDate fecha(String categoria) {
+		int year = 0, month = 0, day = 0;
+		boolean bisiesto = false;
+		int ultimodia = 31;
+		System.out.println(categoria.toUpperCase());
+		day = getday(ultimodia);
+		month = getmonth();
+		year = getyear();
+		bisiesto = getleap(year);	
+		ultimodia = getlastday(month);
+		if(bisiesto == true && month == 2)
+			ultimodia = 29;
+		if(ultimodia < day)
+		{
+			System.out.println("Por favor corregir el dia");
+			day = getday(ultimodia);
+		}
+		
+		LocalDate fecha = LocalDate.of(year,month,day);
+		return fecha;
+	}
+
+	public int cantidad(String categoria) {
+		int cantidad = 0;
+		boolean valido = false;
+		while (valido == false) {
+			try {
+				System.out.println("Ingrese la cantidad " + categoria);
+				cantidad = input.nextInt();
+				if(cantidad > 0)
+					valido = true;
+				else
+					System.out.println("Por favor ingresar un valor adecuado");
+			} catch (InputMismatchException e) {
+				System.out.println("Por favor ingresar un valor adecuado");
+				input.next();
+			}
+		}
+		return cantidad;
+	}
+
+	public String factura()
+	{
+		String factura = "";
+		System.out.println("Ingrese la factura:");
+		factura = input.nextLine();
+		return factura;
+	}
+
+	public double total() {
+		double total = 0;
+		boolean valido = false;
+		while (valido == false) {
+			try {
+				System.out.println("Ingrese el total:");
+				total = input.nextDouble();
+				if(total > 0)
+					valido = true;
+				else
+					System.out.println("Por favor ingresar un valor adecuado");
+			} catch (InputMismatchException e) {
+				System.out.println("Por favor ingresar un valor adecuado");
+				input.next();
+			}
+		}
+		return total;
 	}
 }

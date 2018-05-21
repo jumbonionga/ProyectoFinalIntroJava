@@ -14,6 +14,7 @@ public class Main {
 		Clientes clientes = null;
 		Empleados empleados = null;
 		Proveedores proveedores = null;
+		Compras compras = null;
 		Scanner input = new Scanner(System.in);
 		int opcion = 0;
 		do {
@@ -55,7 +56,11 @@ public class Main {
 				}
 				break;
 				
-				case 5: menudisplay.SubMenu("compra");
+				case 5: {
+					if(compras == null)
+						compras = new Compras();
+					compras.displaymenu();
+				}
 				break;
 				
 				case 6: menudisplay.SubMenu("venta");
