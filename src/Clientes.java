@@ -180,7 +180,7 @@ public class Clientes {
 			{
 				if(clientes[i].getnombre().equals(nombre))
 				{
-					System.out.println("Cliente encontrado!");
+					System.out.println("\u00A1Cliente encontrado!");
 					detalles(clientes[i]);
 					System.out.println("------------------------------------");
 				}
@@ -216,16 +216,193 @@ public class Clientes {
 			{
 				if(edad == Period.between(clientes[i].getnacimiento(), ahora).getYears())
 				{
-					System.out.println("\u00A1Art\u00EDculo encontrado!");
+					System.out.println("\u00A1Cliente encontrado!");
 					detalles(clientes[i]);
 					System.out.println("------------------------------------");
 				}
 				else if(i == cantidad-1)
-					System.out.println("Art\u00EDculo no encontrado");
+					System.out.println("Cliente no encontrado");
 			}
 			
 		}
 		break;
+		case 3:
+		{
+			int genero = 0;
+			boolean valido = false;
+			String gender = "";
+			while (valido == false) 
+			{
+				try {
+					System.out.println("Ingrese el g\u00E9nero que desea encontrar");
+					System.out.println("1: Masculino\t2:Femenino");
+					genero = input.nextInt();
+					if(genero == 1 || genero == 2)
+					{
+						if(genero == 1)
+							gender = "masculino";
+						else if (genero == 2)
+							gender = "femenino";
+						valido = true;
+					}
+					else
+						System.out.println("Por favor introduzca un valor adecuado");
+				} catch (InputMismatchException e) 
+				{
+					System.out.println("Por favor introduzca un valor adecuado");
+					input.next();
+				}
+			}
+			for(int i = 0; i<cantidad;i++)
+			{
+				if(clientes[i].getgenero().equals(gender))
+				{
+					System.out.println("\u00A1Cliente encontrado!");
+					detalles(clientes[i]);
+					System.out.println("------------------------------------");
+				}
+				else if(i == cantidad-1)
+					System.out.println("Cliente no encontrado");
+			}
 		}
+		break;
+		
+		case 4:
+		{
+			int nit = 0;
+			boolean valido = false;
+			while(valido == false)
+			{
+				try
+				{
+					System.out.println("Ingrese el NIT (sin gui\u00F3n)");;
+					nit = input.nextInt();
+					if(nit > 0)
+						valido = true;
+					else
+						System.out.println("Por favor ingresar un valor adecuado");
+				} catch (InputMismatchException e) 
+				{
+					System.out.println("Por favor ingresar un valor adecuado");
+					input.next();
+				}
+			}
+			for(int i = 0; i<cantidad;i++)
+			{
+				if(clientes[i].getNIT() == nit)
+				{
+					System.out.println("\u00A1Cliente encontrado!");
+					detalles(clientes[i]);
+					System.out.println("------------------------------------");
+				}
+				else if(i == cantidad-1)
+					System.out.println("Cliente no encontrado");
+			}
+		}
+		break;
+		
+		case 5:
+		{
+			int telefono = 0;
+			boolean valido = false;
+			while(valido == false)
+			{
+				try
+				{
+					System.out.println("Ingrese el telefono (sin gui\u00F3n ni espacio)");;
+					telefono = input.nextInt();
+					if(telefono > 0)
+						valido = true;
+					else
+						System.out.println("Por favor ingresar un valor adecuado");
+				} catch (InputMismatchException e) 
+				{
+					System.out.println("Por favor ingresar un valor adecuado");
+					input.next();
+				}
+			}
+			for(int i = 0; i<cantidad;i++)
+			{
+				if(clientes[i].gettelefono() == telefono)
+				{
+					System.out.println("\u00A1Cliente encontrado!");
+					detalles(clientes[i]);
+					System.out.println("------------------------------------");
+				}
+				else if(i == cantidad-1)
+					System.out.println("Cliente no encontrado");
+			}
+		}
+		break;
+		
+		case 6:
+		{
+			String correo = "";
+			System.out.println("Ingrese el correo del cliente a buscar:");
+			correo = input.nextLine();
+			for(int i = 0; i < cantidad; i++)
+			{
+				if(clientes[i].getcorreo().equals(correo))
+				{
+					System.out.println("\u00A1Cliente encontrado!");
+					detalles(clientes[i]);
+					System.out.println("------------------------------------");
+				}
+				else if(i == cantidad-1)
+					System.out.println("Cliente no encontrado");
+			}
+		}
+		break;
+		
+		case 7:
+		{
+			String direccion = "";
+			System.out.println("Ingrese el direcci\u00F3on del cliente a buscar:");
+			direccion = input.nextLine();
+			for(int i = 0; i < cantidad; i++)
+			{
+				if(clientes[i].getdireccion().equals(direccion))
+				{
+					System.out.println("\u00A1Cliente encontrado!");
+					detalles(clientes[i]);
+					System.out.println("------------------------------------");
+				}
+				else if(i == cantidad-1)
+					System.out.println("Cliente no encontrado");
+			}
+		}
+		break;
+		}
+	}
+
+	private void borrarcliente()
+	{
+		int codigo = 0;
+		boolean valido = false;
+		if(cantidad == 0)
+			System.out.println("El inventario esta vac\u00EDo");
+		else
+		{
+			while (valido == false) 
+			{
+				try {
+					menu.borraritem("cliente");
+					System.out.println("Ingrese el c\u00F3digo del cliente a borrar o rehabilitar:");
+					codigo = input.nextInt();
+					if(codigo > 0 && codigo < cantidad)
+						valido = true;
+					else
+						System.out.println("Por favor ingrese un valor adecuado.");
+				} catch (InputMismatchException e) 
+				{
+					System.out.println("Por favor ingrese un valor adecuado.");
+					input.next();
+				}
+			}
+		}
+		
+		Cliente cliente = clientes[codigo];
+		cliente.setborrado();
+		System.out.println("\u00A1Hecho!");
 	}
 }

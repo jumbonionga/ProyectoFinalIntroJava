@@ -286,4 +286,10 @@ public class Menus {
 		System.out.println("BUSCAR UN "+ categoria.toUpperCase());
 		System.out.println("Ingrese el campo que desea buscar para encontrar el " + categoria);
 	}
+
+	public void borraritem(String categoria)
+	{
+		System.out.println("BORRAR O REHABILITAR "+categoria.toUpperCase());
+	}
+
 }

@@ -485,6 +485,7 @@ public class Inventario {
 			while (valido == false) 
 			{
 				try {
+					System.out.println("BORRAR O REHABILITAR ART\u00CDCULO");
 					System.out.println("Ingrese el c\u00F3digo del art\u00EDculo a borrar o rehabilitar:");
 					codigo = input.nextInt();
 					if(codigo > 0 && codigo < cantidad)
