@@ -292,4 +292,9 @@ public class Menus {
 		System.out.println("BORRAR O REHABILITAR "+categoria.toUpperCase());
 	}
 
+	public void modificaritem(String categoria)
+	{
+		System.out.println("MODIFICAR "+categoria.toUpperCase());
+		System.out.println("Ingrese el c\u00F3digo del "+categoria+" a modificar:");
+	}
 }

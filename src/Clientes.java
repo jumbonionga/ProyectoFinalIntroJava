@@ -405,4 +405,127 @@ public class Clientes {
 		cliente.setborrado();
 		System.out.println("\u00A1Hecho!");
 	}
+
+	private void modificarcliente()
+	{
+		int codigo = 0;
+ 		int campo = 0;
+ 		boolean valido = false;
+ 		if(cantidad == 0)
+			System.out.println("El inventario esta vac\u00EDo");
+ 		else
+ 		{
+ 			while (valido==false) 
+	 		{
+				try 
+				{
+					menu.modificaritem("cliente");
+					codigo = input.nextInt();
+					System.out.println("Ingrese el campo a modificar:");
+					System.out.println("1: Nombre");
+					System.out.println("2: Fecha de nacimiento");
+					System.out.println("3: G\u00E9nero");
+					System.out.println("4: NIT");
+					System.out.println("5: Tel\u00E9fono");
+					System.out.println("6: Correo");
+					System.out.println("7: Direcci\u00F3n");
+					System.out.println("8: Estado civil");
+					System.out.println("9: Regresar al menu anterior");
+					campo = input.nextInt();
+					if(codigo <= cantidad && (campo >= 1 || campo <= 10))
+						valido = true;
+					else
+						System.out.println("Por favor introduzca un valor adecuado");
+				} catch (InputMismatchException e) 
+				{
+					System.out.println("Por favor introduzca un valor adecuado");
+					input.next();
+				}
+	 		}
+ 			
+ 			Cliente cliente = clientes[codigo];
+ 			
+ 			switch(campo)
+ 			{
+ 			case 1:
+ 			{
+ 				input.nextLine();
+ 	 			System.out.println("MODIFICAR NOMBRE");
+ 	 			System.out.println("Nombre actual: " + cliente.getnombre());
+ 	 			System.out.println("Ingrese el nuevo nombre: ");
+ 	 			String nuevoNombre = input.nextLine();
+ 	 			cliente.setnombre(nuevoNombre);
+ 			}
+ 			break;
+ 			
+ 			case 2:
+ 			{
+ 				System.out.println("MODIFICAR FECHA DE NACIMIENTO");
+ 				System.out.println(cliente.getnacimiento());
+ 				LocalDate nuevonacimiento = menu.fechanacimiento();
+ 				cliente.setnacimiento(nuevonacimiento);
+ 			}
+ 			break;
+ 			
+ 			case 3:
+ 			{
+ 				boolean nuevoGenero = false;
+ 				System.out.println("MODIFICAR G\u00C9NERO");
+				System.out.println("G\u00E9nero actual: " + cliente.getgenero());
+				nuevoGenero = menu.genero();
+ 	 			cliente.setgenero(nuevoGenero);
+ 			}
+ 			break;
+ 			
+ 			case 4:
+ 			{
+ 				int nuevoNIT = 0;
+ 				System.out.println("MODIFICAR NIT");
+				System.out.println("NIT actual: " + cliente.getNIT());
+				nuevoNIT = menu.NIT();
+				cliente.setNIT(nuevoNIT);
+ 			}
+ 			break;
+ 			
+ 			case 5:
+ 			{
+ 				int telefono = 0;
+ 				System.out.println("MODIFICAR TEL\u00C9FONO");
+ 				System.out.println("Tel\u00E9fono actual: " + cliente.gettelefono());
+ 				telefono = menu.telefono();
+ 				cliente.settelefono(telefono);
+ 			}
+ 			
+ 			case 6:
+ 			{
+ 				String correo = "";
+ 				System.out.println("MODIFICAR CORREO");
+ 				System.out.println("Correo actual: " + cliente.getcorreo());
+ 				correo = menu.correo();
+ 				cliente.setcorreo(correo);
+ 			}
+ 			break;
+ 			
+ 			case 7:
+ 			{
+ 				String direccion = "";
+ 				System.out.println("MODIFICAR DIRECCI\u00D3N");
+ 				System.out.println("Direcci\u00F3n actual: " + cliente.getdireccion());
+ 				direccion = menu.direccion();
+ 				cliente.setdireccion(direccion);
+ 			}
+ 			break;
+ 			
+ 			case 8:
+ 			{
+ 				boolean casado = false;
+ 				System.out.println("MODIFICAR ESTADO CIVIL");
+ 				System.out.println("\u00BFEsta casado(a) actualmente?: " + cliente.getcasado());
+ 				casado = menu.casado();
+ 				cliente.setcasado(casado);
+ 			}
+ 			break;
+ 			}
+ 		}
+	}
 }

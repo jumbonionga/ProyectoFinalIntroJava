@@ -551,7 +551,6 @@ public class Inventario {
  		case 1:
  		{
  			input.nextLine();
- 			//String nuevoNombre = "";
  			System.out.println("MODIFICAR NOMBRE");
  			System.out.println("Nombre actual: " + articulo.getnombre());
  			System.out.println("Ingrese el nuevo nombre: ");
