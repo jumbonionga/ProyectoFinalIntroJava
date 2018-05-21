@@ -46,6 +46,12 @@ public class Clientes {
 			case 3:
 				buscarmenu();
 				break;
+			case 4:
+				modificarcliente();
+				break;
+			case 5:
+				borrarcliente();
+				break;
 			}
 		} while(opcion != SALIR);
 	}
@@ -89,7 +95,6 @@ public class Clientes {
 		System.out.println("Correo: " + cliente.getcorreo());
 		System.out.println("Direcci\u00F3n: " + cliente.getdireccion());
 		System.out.println("\u00BFEs casado?: " + cliente.getcasado());
-		
 	}
 
 	private void mostrarcliente()
@@ -124,7 +129,7 @@ public class Clientes {
 			if(cliente.getborrado() == false)
 				detalles(cliente);
 			else
-				System.out.println("El articulo no existe o esta borrado");
+				System.out.println("El cliente no existe o esta borrado");
 				
 		}
 	}
@@ -149,9 +154,10 @@ public class Clientes {
 					System.out.println("5: Tel\u00E9fono");
 					System.out.println("6: Correo");
 					System.out.println("7: Direcci\u00F3n");
-					System.out.println("8: Regresar al menu anterior");
+					System.out.println("8: Estado civil");
+					System.out.println("9: Regresar al menu anterior");
 					opcion = input.nextInt();
-					if(opcion < 1 || opcion > 8)
+					if(opcion < 1 || opcion > 9)
 						System.out.println("Por favor introduzca un valor adecuado");
 					else
 						valido = true;
@@ -372,6 +378,43 @@ public class Clientes {
 			}
 		}
 		break;
+		
+		case 8:
+		{
+			int iopcion = 0;
+			String casado = "";
+			boolean valido = false;
+			while (valido == false) {
+				try {
+					System.out.println("\u00BFEst\u00E1 casado?");
+					System.out.println("1: Si\t2:No");
+					iopcion = input.nextInt();
+					if(iopcion == 1 || iopcion == 2)
+						valido = true;
+					else
+						System.out.println("Por favor ingresar un valor adecuado");
+				} catch (InputMismatchException e) {
+					System.out.println("Por favor ingresar un valor adecuado");
+					input.next();
+				}
+			}
+			if(iopcion == 1)
+				casado = "Si";
+			else if (iopcion == 2)
+				casado = "No";
+			for(int i = 0; i < cantidad; i++)
+			{
+				if(clientes[i].getcasado().equals(casado))
+				{
+					System.out.println("\u00A1Cliente encontrado!");
+					detalles(clientes[i]);
+					System.out.println("------------------------------------");
+				}
+				else if(i == cantidad-1)
+					System.out.println("Cliente no encontrado");
+			}
+		}
+		break;
 		}
 	}
 
@@ -380,7 +423,7 @@ public class Clientes {
 		int codigo = 0;
 		boolean valido = false;
 		if(cantidad == 0)
-			System.out.println("El inventario esta vac\u00EDo");
+			System.out.println("La cartera de clientes esta vac\u00EDa");
 		else
 		{
 			while (valido == false) 
@@ -412,7 +455,7 @@ public class Clientes {
  		int campo = 0;
  		boolean valido = false;
  		if(cantidad == 0)
-			System.out.println("El inventario esta vac\u00EDo");
+			System.out.println("La cartera de clientes esta vac\u00EDa");
  		else
  		{
  			while (valido==false) 

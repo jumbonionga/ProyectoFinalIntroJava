@@ -10,9 +10,9 @@ public class Menus {
 		System.out.println("Seleccione la opción de la operación a realizar");
 		System.out.println("1. Inventario");
 		System.out.println("2. Clientes");
-/*		System.out.println("3. Empleados");
+		System.out.println("3. Empleados");
 		System.out.println("4. Proveedores");
-		System.out.println("5. Compras");
+/*		System.out.println("5. Compras");
 		System.out.println("6. Ventas");
 		System.out.println("7. Reportes");*/
 		System.out.println("8. Salir");
@@ -175,6 +175,7 @@ public class Menus {
 		int year = 0, month = 0, day = 0;
 		boolean bisiesto = false;
 		int ultimodia = 31;
+		System.out.println("FECHA DE NACIMIENTO");
 		day = getday(ultimodia);
 		month = getmonth();
 		year = getyear();
@@ -197,7 +198,7 @@ public class Menus {
 		int dia = 0;
 		while(dia == 0)	{
 			try {
-				System.out.println("Ingrese el dia de nacimiento (1-"+ultimodia+")");
+				System.out.println("Ingrese el dia (1-"+ultimodia+")");
 				dia = input.nextInt();
 				if(dia > 31 || dia <= 0) {
 					System.out.println("Por favor ingresar un valor adecuado");
@@ -296,5 +297,73 @@ public class Menus {
 	{
 		System.out.println("MODIFICAR "+categoria.toUpperCase());
 		System.out.println("Ingrese el c\u00F3digo del "+categoria+" a modificar:");
+	}
+
+	public int cargo() 
+	{
+		int cargo = -1;
+		boolean valido = false;
+		while (valido == false) {
+			try {
+				System.out.println("Ingrese el cargo a asignar");
+				System.out.println("1: Vendedor");
+				System.out.println("2: Gerente");
+				System.out.println("3: Mec\u00E1nico");
+				System.out.println("4: Log\u00edstico");
+				System.out.println("5: Repartidor");
+				System.out.println("6: Asistente");
+				cargo = input.nextInt();
+				if(cargo > 0 && cargo < 7)
+					valido = true;
+				else
+					System.out.println("Por favor ingresar un valor adecuado");
+			} catch (InputMismatchException e) {
+				System.out.println("Por favor ingresar un valor adecuado");
+				valido = false;
+				input.next();
+			}
+		}
+		return cargo;
+	}
+
+	public LocalDate fechacontratacion() {
+		int year = 0, month = 0, day = 0;
+		boolean bisiesto = false;
+		int ultimodia = 31;
+		System.out.println("FECHA DE CONTRATACI\u00D3N");
+		day = getday(ultimodia);
+		month = getmonth();
+		year = getyear();
+		bisiesto = getleap(year);	
+		ultimodia = getlastday(month);
+		if(bisiesto == true && month == 2)
+			ultimodia = 29;
+		if(ultimodia < day)
+		{
+			System.out.println("Por favor corregir el dia");
+			day = getday(ultimodia);
+		}
+		
+		LocalDate contratacion = LocalDate.of(year,month,day);
+		return contratacion;
+	}
+
+	public double sueldo() {
+		double sueldo = 0;
+		boolean valido = false;
+		while (valido == false) {
+			try {
+				System.out.println("Ingrese el sueldo:");
+				sueldo = input.nextDouble();
+				if(sueldo >= 0)
+					valido = true;
+				else
+					System.out.println("Por favor ingresar un valor adecuado");
+			} catch (InputMismatchException e) {
+				System.out.println("Por favor ingresar un valor adecuado");
+				input.next();
+			}
+		}
+		return sueldo;
 	}
 }

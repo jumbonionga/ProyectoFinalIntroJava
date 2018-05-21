@@ -1,73 +1,100 @@
 import java.time.*;
 
-public class Cliente {
+public class Empleado {
 	private int codigo;
 	private String nombre;
+	private String cargo; //vendedor, gerente, mecánico, logística, repartidor, asistente
 	private LocalDate nacimiento;
+	private LocalDate contratacion;
 	private boolean masculino;
-	private int NIT;
 	private int telefono;
 	private String correo;
 	private String direccion;
 	private boolean casado;
+	private double sueldo;
 	private boolean borrado = false;
 	
-	public Cliente()
-	{
+	public Empleado() {
 		codigo = -1;
 		nombre = "";
+		cargo = ""; //vendedor, gerente, mecánico, logística, repartidor, asistente
 		nacimiento = LocalDate.now();
+		contratacion = LocalDate.now();
 		masculino = false;
-		NIT = -1;
 		telefono = -1;
 		correo = "";
 		direccion = "";
 		casado = false;
+		sueldo = 0;
 	}
 	
-	public void setnombre(String nombre)
-	{
+	public void setnombre(String nombre) {
 		this.nombre = nombre;
 	}
 	
-	public String getnombre()
-	{
+	public String getnombre() {
 		return this.nombre;
 	}
 	
-	public void setnacimiento(LocalDate nacimiento)
+	public void setcargo(int cargo)
 	{
+		String scargo = "";
+		switch (cargo)
+		{
+		case 1:
+			scargo = "Vendedor";
+			break;
+		case 2:
+			scargo = "Gerente";
+			break;
+		case 3:
+			scargo = "Mec\u00E1nico";
+			break;
+		case 4:
+			scargo = "Log\u00edstico";
+			break;
+		case 5:
+			scargo = "Repartidor";
+			break;
+		case 6:
+			scargo = "Asistente";
+			break;
+		}
+		this.cargo = scargo;
+	}
+	
+	public String getcargo()
+	{
+		return this.cargo;
+	}
+	
+ 	public void setnacimiento(LocalDate nacimiento)	{
 		this.nacimiento = nacimiento;
 	}
 	
-	public LocalDate getnacimiento()
-	{
+	public LocalDate getnacimiento() {
 		return this.nacimiento;
 	}
 
-	public void setgenero(boolean genero)
-	{
+	public void setcontratacion(LocalDate contratacion)	{
+		this.contratacion = contratacion;
+	}
+	
+	public LocalDate getcontratacion() {
+		return this.contratacion;
+	}
+
+	public void setgenero(boolean genero) {
 		this.masculino = genero;
 	}
 	
-	public String getgenero()
-	{
+	public String getgenero() {
 		String genero = "";
 		if(this.masculino == true)
 			genero = "Masculino";
 		else if(this.masculino == false)
 			genero = "Femenino";
 		return genero;
-	}
-	
-	public void setNIT(int NIT)
-	{
-		this.NIT = NIT;
-	}
-	
-	public int getNIT()
-	{
-		return this.NIT;
 	}
 
 	public void settelefono(int telefono)
@@ -115,6 +142,16 @@ public class Cliente {
 		return casado;
 	}
 
+	public void setsueldo(double sueldo)
+	{
+		this.sueldo = sueldo;
+	}
+	
+	public double getsueldo()
+	{
+		return this.sueldo;
+	}
+	
 	public void setcodigo(int codigo)
 	{
 		this.codigo = codigo;
@@ -137,4 +174,5 @@ public class Cliente {
 	{
 		return this.borrado;
 	}
+
 }
