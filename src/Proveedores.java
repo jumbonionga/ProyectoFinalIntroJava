@@ -73,7 +73,7 @@ public class Proveedores {
 		detalles(proveedor);
 	}
 
-	public void detalles(Proveedor proveedor) {
+	private void detalles(Proveedor proveedor) {
 		System.out.println("C\u00F3digo proveedor: "+proveedor.getcodigo());
 		System.out.println("Nombre: " + proveedor.getnombre());
 		System.out.println("Contacto: " + proveedor.getcontacto());
