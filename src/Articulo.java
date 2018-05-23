@@ -13,6 +13,7 @@ public class Articulo {
 	private int existencia;
 	private boolean borrado = false;
 	private Scanner input;
+	private boolean esbici = true;
 	
 	public Articulo()
 	{
@@ -62,7 +63,7 @@ public class Articulo {
 				if(opcion == 1 || opcion == 2)
 					valido = true;
 				else
-					System.out.println("Por favor ingresar un valor adecuado");
+					throw new InputMismatchException();
 			} catch (InputMismatchException e) 
 			{
 				System.out.println("Por favor ingresar un valor adecuado");
@@ -106,7 +107,7 @@ public class Articulo {
 				System.out.println("1: Peque\u00F1a\t2: Mediana\t3: Grande");
 				opcion = input.nextInt();
 				if(opcion < 1 || opcion > 3)
-					System.out.println("Por favor ingresar un valor adecuado");
+					throw new InputMismatchException();
 				else
 					valido = true;
 			} catch (InputMismatchException e) 
@@ -154,7 +155,7 @@ public class Articulo {
 				System.out.println("1: Monta\u00F1a\t2: Ruta\t\t3: Ciudad\t4: Infantil");
 				opcion = input.nextInt();
 				if(opcion < 1 || opcion > 4)
-					System.out.println("Por favor ingresar un valor adecuado");
+					throw new InputMismatchException();
 				else
 					valido = true;
 			} catch (InputMismatchException e) 
@@ -357,5 +358,37 @@ public class Articulo {
 	public boolean getborrado()
 	{
 		return this.borrado;
+	}
+	
+	public void setesbici() {
+		int opcion = 0;
+		boolean valido = false;
+		
+		while (valido == false) 
+		{
+			try 
+			{
+				System.out.println("\u00BFEs bicicleta?");
+				System.out.println("1: Si\t2: No");
+				opcion = input.nextInt();
+				if(opcion == 1 || opcion == 2)
+					valido = true;
+				else
+					throw new InputMismatchException();
+			} catch (InputMismatchException e) 
+			{
+				System.out.println("Por favor ingresar un valor adecuado");
+				valido = false;
+				input.next();
+			}
+		}
+		if(opcion == 1)
+			this.esbici = true;
+		else if(opcion == 2)
+			this.esbici = false;
+	}
+	
+	public boolean getesbici() {
+		return this.esbici;
 	}
 }

@@ -60,10 +60,13 @@ public class Inventario {
 		inventario[cantidad].setnombre();
 		// Definicion de genero
 		inventario[cantidad].setgenero();
+		// Definir si es bicicleta
+		inventario[cantidad].setesbici();
 		// Ingreso de talla
 		inventario[cantidad].settalla();
 		// Ingreso de categoria
-		inventario[cantidad].settipo();
+		if(inventario[cantidad].getesbici() == true)
+			inventario[cantidad].settipo();
 		// Ingreso fabricante
 		inventario[cantidad].setfabricante();
 		// Ingreso de descripcion
@@ -76,6 +79,7 @@ public class Inventario {
 		inventario[cantidad].setexistencias();
 		// Definir código
 		inventario[cantidad].setcodigo(cantidad);
+		
 		
 		// DESPLIEGUES (podría ir en su propio método)
 		detalles(inventario[cantidad]);

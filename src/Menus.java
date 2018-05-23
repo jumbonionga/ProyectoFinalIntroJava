@@ -13,8 +13,8 @@ public class Menus {
 		System.out.println("3. Empleados");
 		System.out.println("4. Proveedores");
 		System.out.println("5. Compras");
-/*		System.out.println("6. Ventas");
-		System.out.println("7. Reportes");*/
+		System.out.println("6. Ventas");
+		System.out.println("7. Reportes");
 		System.out.println("8. Salir");
 	}
 	
@@ -457,4 +457,28 @@ public class Menus {
 		}
 		return pago;
 	}
+
+	public int reporteria() {
+		int opcion = 0;
+		boolean valido = false;
+		while(valido == false) {
+			try {
+				System.out.println("REPORTER\u00EDA");
+				System.out.println("Escoja el reporte a desplegar");
+				System.out.println("1: Bicicletas sin existencia");
+				System.out.println("2: Top 3 articulos no bicicleta");
+				opcion = input.nextInt();
+				if(opcion >=1 && opcion <= 5)
+					valido = true;
+				else
+					throw new InputMismatchException();
+			} catch (InputMismatchException e) {
+				System.out.println("Por favor ingresar un valor adecuado");
+				input.next();
+			}
+		}
+		return opcion;
+	}
+	
+	
 }

@@ -69,7 +69,9 @@ public class Main {
 				}
 				break;
 				
-				case 7: System.out.println("Reportes");
+				case 7: {
+					Reportes reporteria = new Reportes(inventory);
+				}
 				break;
 				
 				case 8: System.out.println("Saliendo");
