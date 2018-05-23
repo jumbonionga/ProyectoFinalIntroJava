@@ -6,7 +6,7 @@ public class Proveedores {
 	private Scanner input;
 	int cantidad;
 	private int opcion;
-	private final int LIMITE = 25;
+	private final int LIMITE = 100;
 	private final int SALIR = 6;
 	private Menus menu;
 	

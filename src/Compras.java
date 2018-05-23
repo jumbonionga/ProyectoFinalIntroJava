@@ -110,7 +110,7 @@ public class Compras {
 					if(codigo < cantidad)
 						valido = true;
 					else
-						System.out.println("Por favor ingresar un valor adecuado");
+						throw new InputMismatchException();
 				} catch (InputMismatchException e) 
 				{
 					System.out.println("Por favor ingresar un valor adecuado");
@@ -128,7 +128,7 @@ public class Compras {
 		int opcion = 0;
 		boolean valido = false;
 		if(cantidad == 0)
-			System.out.println("La cartera de proveedores esta vac\u00EDa");
+			System.out.println("La cartera de compras esta vac\u00EDa");
 		else
 		{
 			while (valido == false) 
@@ -147,7 +147,7 @@ public class Compras {
 					System.out.println("9: Regresar al menu anterior");
 					opcion = input.nextInt();
 					if(opcion < 1 || opcion > 9)
-						System.out.println("Por favor introduzca un valor adecuado");
+						throw new InputMismatchException();
 					else
 						valido = true;
 				}
@@ -168,8 +168,21 @@ public class Compras {
 		case 1: 
 		{
 			int proveedor = -1;
-			System.out.println("Ingrese el c\u00F3digo del proveedor a buscar:");
-			proveedor = input.nextInt();
+			boolean valido = false;
+			while (valido == false) {
+				try {
+					System.out.println("Ingrese el c\u00F3digo del proveedor a buscar:");
+					proveedor = input.nextInt();
+					if(proveedor >= 0)
+						valido = true;
+					else
+						throw new InputMismatchException();
+				}catch (InputMismatchException e) {
+					System.out.println("Por favor introduzca un valor adecuado");
+					input.next();
+				}
+			}
+
 			for(int i = 0; i < cantidad; i++)
 			{
 				if(compras[i].getproveedor() == proveedor)

@@ -96,13 +96,19 @@ public class Menus {
 				NIT = input.nextInt();
 				if(NIT > 0)
 					valido = true;
-				else
-					System.out.println("Por favor ingresar un valor adecuado");
+				else {
+					System.out.println("Else");
+					throw new InputMismatchException();
+					//System.out.println("Por favor ingresar un valor adecuado");	
+				}
 			} catch (InputMismatchException e) 
 			{
-				System.out.println("Por favor ingresar un valor adecuado");
+				//System.out.println("Por favor ingresar un valor adecuado");
+				System.out.println("catch");
 				input.next();
 			}
+			finally
+			{}
 		}
 		return NIT;
 	}
@@ -336,7 +342,7 @@ public class Menus {
 				if(entry >= 0)
 					valido = true;
 				else
-					System.out.println("Por favor ingresar un valor adecuado");
+					throw new InputMismatchException();
 			} catch (InputMismatchException e) {
 				System.out.println("Por favor ingresar un valor adecuado");
 				input.next();
@@ -377,7 +383,7 @@ public class Menus {
 				if(cantidad > 0)
 					valido = true;
 				else
-					System.out.println("Por favor ingresar un valor adecuado");
+					throw new InputMismatchException();
 			} catch (InputMismatchException e) {
 				System.out.println("Por favor ingresar un valor adecuado");
 				input.next();
@@ -404,12 +410,51 @@ public class Menus {
 				if(total > 0)
 					valido = true;
 				else
-					System.out.println("Por favor ingresar un valor adecuado");
+					throw new InputMismatchException();
 			} catch (InputMismatchException e) {
 				System.out.println("Por favor ingresar un valor adecuado");
 				input.next();
 			}
 		}
 		return total;
+	}
+
+	public String metodoPago() {
+		int metodo = 0;
+		String pago = "";
+		boolean valido = false;
+		while(valido == false) {
+			try {
+				System.out.println("Ingrese el m\u00E9todo de pago");
+				System.out.println("1: Efectivo");
+				System.out.println("2: Tarjeta de cr\u00E9dito");
+				System.out.println("3: Tarjeta de d\u00E9bito");
+				System.out.println("4: Cheque");
+				metodo = input.nextInt();
+				if(metodo >= 1 || metodo <= 4)
+					valido = true;
+				else
+					throw new InputMismatchException();
+			} catch (InputMismatchException e) {
+				System.out.println("Por favor ingresar un valor adecuado");
+				input.next();
+			}
+		}
+		
+		switch(metodo) {
+		case 1:
+			pago = "Efectivo";
+			break;
+		case 2:
+			pago = "Tarjeta de cr\u00E9dito";
+			break;
+		case 3:
+			pago = "Tarjeta de d\u00E9bito";
+			break;
+		case 4:
+			pago = "Cheque";
+			break;
+		}
+		return pago;
 	}
 }

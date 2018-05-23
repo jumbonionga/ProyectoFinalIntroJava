@@ -15,6 +15,7 @@ public class Main {
 		Empleados empleados = null;
 		Proveedores proveedores = null;
 		Compras compras = null;
+		Ventas ventas = null;
 		Scanner input = new Scanner(System.in);
 		int opcion = 0;
 		do {
@@ -63,7 +64,9 @@ public class Main {
 				}
 				break;
 				
-				case 6: menudisplay.SubMenu("venta");
+				case 6: {
+					menudisplay.SubMenu("venta");
+				}
 				break;
 				
 				case 7: System.out.println("Reportes");
