@@ -3,39 +3,31 @@ import java.util.*;
 public class Articulo {
 	public int codigo;
 	private String nombre;
-	private boolean masculino;
-	private int talla; // tiene que tener entre 0-2
-	private int tipo; // tiene que tener entre 0-3;
+	private String genero;
+	private String talla; // tiene que tener entre 0-2
+	private String tipo; // tiene que tener entre 0-3;
 	private String fabricante;
 	private String descripcion;
-	private float precio;
-	private float costo;
-	private int existencia;
+	private double precio;
+	private double costo;
+	private int cantidad;
 	private boolean borrado = false;
-	private Scanner input;
 	private boolean esbici = true;
+	private double utilidad;
 	
 	public Articulo()
 	{
 		codigo = -1; // alfanumerico positivo asignado por el programa
 		nombre = ""; // alfanumerico
-		masculino = false; // masculino o femenino
-		talla = 0; // small, medium, large
-		tipo = 0; // montaña, ruta, ciudad, infantil
+		genero = ""; // masculino o femenino
+		talla = ""; // small, medium, large
+		tipo = ""; // montaña, ruta, ciudad, infantil
 		fabricante = ""; // alfanumerico
 		descripcion = ""; // alfanumerico (LIMITE: 75)
 		precio = 0.00f;
 		costo = 0.00f;
-		existencia = 0;
-		input = new Scanner(System.in);
-	}
-	
-	public void setnombre()
-	{
-		String nombre = "";
-		System.out.println("Ingrese el nombre del articulo");
-		nombre += input.nextLine();
-		this.nombre = nombre;
+		cantidad = 0;
+		utilidad = 0.00;
 	}
 	
 	public void setnombre(String nombre)
@@ -48,163 +40,40 @@ public class Articulo {
 		return this.nombre;
 	}
 	
-	public void setgenero()
+	public void setgenero(String genero)
 	{
-		int opcion = 0;
-		boolean valido = false;
-		
-		while (valido == false) 
-		{
-			try 
-			{
-				System.out.println("\u00BFEs masculino?");
-				System.out.println("1: Si\t2: No");
-				opcion = input.nextInt();
-				if(opcion == 1 || opcion == 2)
-					valido = true;
-				else
-					throw new InputMismatchException();
-			} catch (InputMismatchException e) 
-			{
-				System.out.println("Por favor ingresar un valor adecuado");
-				valido = false;
-				input.next();
-			}
-		}
-		if(opcion == 1)
-			this.masculino = true;
-		else if(opcion == 2)
-			this.masculino = false;
-	}
-	
-	public void setgenero(int nuevoGenero)
-	{
-		if(nuevoGenero == 1)
-			this.masculino = true;
-		else if(nuevoGenero == 2)
-			this.masculino = false;
+		this.genero = genero;
 	}
 	
 	public String getgenero()
 	{
-		String genero = "";
-		if(this.masculino == true)
-			genero = "Masculino";
-		else if(this.masculino == false)
-			genero = "Femenino";
-		return genero;
+		return this.genero;
 	}
 	
-	public void settalla()
+	public void settalla(String talla)
 	{
-		int opcion = 0;
-		boolean valido = false;
-		while (valido == false) 
-		{
-			try 
-			{
-				System.out.println("Ingrese la talla");
-				System.out.println("1: Peque\u00F1a\t2: Mediana\t3: Grande");
-				opcion = input.nextInt();
-				if(opcion < 1 || opcion > 3)
-					throw new InputMismatchException();
-				else
-					valido = true;
-			} catch (InputMismatchException e) 
-			{
-				System.out.println("Por favor ingresar un valor adecuado");
-				valido = false;
-				input.next();
-			}
-		}
-		this.talla = opcion;
-	}
-	
-	public void settalla(int nuevaTalla)
-	{
-		this.talla = nuevaTalla;
+		
+		this.talla = talla;
 	}
 	
 	public String gettalla()
 	{
-		String talla = "";
-		switch(this.talla)
-		{
-		case 1:
-			talla = "Peque\u00F1a";
-			break;
-		case 2:
-			talla = "Mediana";
-			break;
-		case 3:
-			talla = "Grande";
-			break;
-		}
-		return talla;
+		return this.talla;
 	}
 	
-	public void settipo()
+	public void settipo(String tipo)
 	{
-		int opcion = 0;
-		boolean valido = false;
-		while (valido == false) 
-		{
-			try 
-			{
-				System.out.println("Ingrese la categoria");
-				System.out.println("1: Monta\u00F1a\t2: Ruta\t\t3: Ciudad\t4: Infantil");
-				opcion = input.nextInt();
-				if(opcion < 1 || opcion > 4)
-					throw new InputMismatchException();
-				else
-					valido = true;
-			} catch (InputMismatchException e) 
-			{
-				System.out.println("Por favor ingresar un valor adecuado");
-				valido = false;
-				input.next();
-			}
-		}
-		this.tipo = opcion;
+		this.tipo = tipo;
 	}
 
-	public void settipo(int nuevoTipo)
-	{
-		this.tipo = nuevoTipo;
-	}
-	
 	public String gettipo()
 	{
-		String categoria = "";
-		switch(this.tipo)
-		{
-		case 1:
-			categoria = "Monta\u00F1a";
-			break;
-		case 2:
-			categoria = "Ruta";
-			break;
-		case 3:
-			categoria = "Ciudad";
-			break;
-		case 4:
-			categoria = "Infantil";
-			break;
-		}
-		return categoria;
+		return this.tipo;
 	}
 	
-	public void setfabricante()
+	public void setfabricante(String fabricante)
 	{
-		input.nextLine();
-		System.out.println("Ingrese el fabricante:");
-		String sinput = input.nextLine();
-		this.fabricante = sinput;
-	}
-	
-	public void setfabricante(String nuevoFabricante)
-	{
-		this.fabricante = nuevoFabricante;
+		this.fabricante = fabricante;
 	}
 	
 	public String getfabricante()
@@ -212,26 +81,9 @@ public class Articulo {
 		return this.fabricante;
 	}
 
-	public void setdescripcion()
+	public void setdescripcion(String descripcion)
 	{
-		boolean valido = false;
-		String sinput = "";
-		int limite = 200;
-		while (valido == false) 
-		{
-			System.out.println("Ingrese descripcion ("+limite+" caracteres maximo)");
-			sinput = input.nextLine();
-			if(sinput.length() <= limite)
-				valido = true;
-			else
-				System.out.println("Por favor ingrese hasta "+limite+" caracteres");
-		}
-		this.descripcion = sinput;
-	}
-	
-	public void setdescripcion(String nuevaDescripcion)
-	{
-		this.descripcion = nuevaDescripcion;
+		this.descripcion = descripcion;
 	}
 	
 	public String getdescripcion()
@@ -239,107 +91,42 @@ public class Articulo {
 		return this.descripcion;
 	}
 
-	public void setprecio()
+	public void setprecio (double precio)
 	{
-		boolean valido = false;
-		float fprecio = 0.00f;
-		while (valido == false) 
-		{
-			try 
-			{
-				System.out.println("Ingrese precio");
-				fprecio = input.nextFloat();
-				valido = true;
-			} catch (InputMismatchException e) 
-			{
-				System.out.println("Por favor ingresar un valor adecuado");
-				valido = false;
-				input.next();
-			}
-		}
-		this.precio = fprecio;
+		this.precio = precio;
+		setutilidad();
 	}
 	
-	public void setprecio (float nuevoPrecio)
-	{
-		this.precio = nuevoPrecio;
-	}
-	
-	public float getprecio()
+	public double getprecio()
 	{
 		return this.precio;
 	}
 	
-	public void setcosto()
+	public void setcosto(double costo)
 	{
-		boolean valido = false;
-		float fcosto = 0.00f;
-		while (valido == false) 
-		{
-			try {
-				System.out.println("Ingrese costo");
-				fcosto = input.nextFloat();
-				if(fcosto > 0)
-					valido = true;
-				else
-					System.out.println("Por favor ingresar un valor adecuado");
-			} catch (InputMismatchException e) 
-			{
-				System.out.println("Por favor ingresar un valor adecuado");
-				valido = false;
-				input.next();
-			}
-		}
-		this.costo = fcosto;
+		this.costo = costo;
+		setutilidad();
 	}
 	
-	public void setcosto(float nuevoCosto)
-	{
-		this.costo = nuevoCosto;
-	}
-	
-	public float getcosto()
+	public double getcosto()
 	{
 		return this.costo;
 	}
-	
-	public void setexistencias()
+		
+	public void setcantidad(int existencia)
 	{
-		boolean valido = false;
-		int existencias = 0;
-		while (valido == false) 
-		{
-			try {
-				System.out.println("Ingrese existencias:");
-				existencias = input.nextInt();
-				if(existencias >= 0)
-					valido = true;
-				else
-					System.out.println("Por favor ingresar un valor adecuado");
-			} catch (InputMismatchException e) 
-			{
-				System.out.println("Por favor ingresar un valor adecuado");
-				valido = false;
-				input.next();
-			}
-		}
-		this.existencia = existencias;
-	}
-	
-	public void setexistencias(int nuevaExistencia)
-	{
-		this.existencia = nuevaExistencia;
+		this.cantidad = existencia;
 	}
 	
 	public int getexistencias()
 	{
-		return this.existencia;
+		return this.cantidad;
 	}
 
-	public void setcodigo(int cantidad)
+	public void setcodigo(int codigo)
 	{
 		if(this.codigo < 0)
-			this.codigo = cantidad;
+			this.codigo = codigo;
 	}
 	
 	public int getcodigo()
@@ -360,35 +147,15 @@ public class Articulo {
 		return this.borrado;
 	}
 	
-	public void setesbici() {
-		int opcion = 0;
-		boolean valido = false;
-		
-		while (valido == false) 
-		{
-			try 
-			{
-				System.out.println("\u00BFEs bicicleta?");
-				System.out.println("1: Si\t2: No");
-				opcion = input.nextInt();
-				if(opcion == 1 || opcion == 2)
-					valido = true;
-				else
-					throw new InputMismatchException();
-			} catch (InputMismatchException e) 
-			{
-				System.out.println("Por favor ingresar un valor adecuado");
-				valido = false;
-				input.next();
-			}
-		}
-		if(opcion == 1)
-			this.esbici = true;
-		else if(opcion == 2)
-			this.esbici = false;
+	public void setesbici(boolean esbici) {
+		this.esbici = esbici;
 	}
 	
 	public boolean getesbici() {
 		return this.esbici;
+	}
+
+	private void setutilidad() {
+		this.utilidad = this.precio - this.costo;
 	}
 }

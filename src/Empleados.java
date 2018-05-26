@@ -61,7 +61,7 @@ public class Empleados {
 		int cargo = menu.cargo();
 		LocalDate nacimiento = menu.fecha("fecha de nacimiento");
 		LocalDate contratacion = menu.fecha("fecha de contratación");
-		boolean genero = menu.genero();
+		String genero = menu.genero();
 		int telefono = menu.telefono();
 		String correo = menu.correo();
 		String direccion = menu.direccion();

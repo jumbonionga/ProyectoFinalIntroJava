@@ -2,14 +2,14 @@ import java.util.*;
 
 public class Reportes {
 	private int opcion;
-	private Inventario inventario;
+	private Articulos inventario;
 	Menus menu;
 	Scanner input;
 
-	public Reportes(Inventario inventory) {
+	public Reportes(Object[] o) {
 		opcion = 0;
 		menu = new Menus();
-		inventario = inventory;
+		inventario = ((Articulos)o[0]);
 		input = new Scanner(System.in);
 		displaymenu();
 	}
@@ -29,7 +29,7 @@ public class Reportes {
 		}
 	}
 	
-	private void sinexistencias(Inventario inventory) {
+	private void sinexistencias(Articulos inventory) {
 		int charlim = 20;
 		System.out.println("SIN EXISTENCIAS");
 		System.out.println("C\u00F3digo\tNombre\t\t\tDescripcion");
@@ -53,7 +53,7 @@ public class Reportes {
 		}
 	}
 
-	private void tresnobici(Inventario inventory) {
+	private void tresnobici(Articulos inventory) {
 		int charlim = 20;
 		Articulo[] tresnobici = new Articulo[3];
 		for(int i = 0; i< 3; i++) {

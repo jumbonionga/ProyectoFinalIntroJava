@@ -1,0 +1,3 @@
+Raptor;Masculino; Large; Montaña; Cannondale; Best bike period; 7500; 12000; 3; Bicicleta
+
+

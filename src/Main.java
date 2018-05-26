@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -8,22 +9,36 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Menus menudisplay = new Menus();
-		Inventario inventory = null;
+		Articulos inventory = new Articulos();
 		Clientes clientes = null;
 		Empleados empleados = null;
 		Proveedores proveedores = null;
 		Compras compras = null;
 		Ventas ventas = null;
 		Scanner input = new Scanner(System.in);
+		try {
+			inventory.agregararchivo();
+		} catch (FileNotFoundException | NullPointerException e1) {
+			
+		}
 		int opcion = 0;
 		do {
+			File file = new File("./Errors.txt");
+			if(file.exists() == true) {
+				System.out.println("ADVERTENCIA!!!!");
+				System.out.println("Existieron errores en la carga de archivos");
+				System.out.println("Se recomienda que los revise en el archivo Errors.txt.");
+				System.out.println("Presione retorno (enter) para continuar");
+				try {
+					System.in.read();
+				} catch (IOException e) {
+				}
+			}
 			menudisplay.MenuPrincipal();
 			try {
 				opcion = input.nextInt();
 			} catch (InputMismatchException e) {
-				// TODO Auto-generated catch block
 				System.out.println("Por favor ingrese un n\u00FAmero entero adecuado");
 			}
 			
@@ -31,7 +46,7 @@ public class Main {
 			{
 				case 1: {
 					if(inventory == null)
-						inventory = new Inventario(); 
+						inventory = new Articulos(); 
 					inventory.displaymenu();
 				}
 				break;
@@ -70,7 +85,8 @@ public class Main {
 				break;
 				
 				case 7: {
-					Reportes reporteria = new Reportes(inventory);
+					Object[] carteras = new Object[]{inventory};
+					Reportes reporteria = new Reportes(carteras);
 				}
 				break;
 				

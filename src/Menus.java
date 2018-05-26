@@ -52,23 +52,23 @@ public class Menus {
 		return nombre;
 	}
 	
-	public boolean genero()
+	public String genero()
 	{
-		int opcion = 0;
-		boolean genero = false;
+		String opcion = "";
 		boolean valido = false;
 		
 		while (valido == false) 
 		{
 			try 
 			{
-				System.out.println("\u00BFEs masculino?");
-				System.out.println("1: Si\t2: No");
-				opcion = input.nextInt();
-				if(opcion == 1 || opcion == 2)
+				input.nextLine();
+				System.out.println("Ingrese el genero");
+				System.out.println("Masculino\tFemenino");
+				opcion = input.nextLine().toLowerCase();
+				if(opcion.equals("masculino") || opcion.equals("femenino"))
 					valido = true;
 				else
-					System.out.println("Por favor ingresar un valor adecuado");
+					throw new InputMismatchException();
 			} catch (InputMismatchException e) 
 			{
 				System.out.println("Por favor ingresar un valor adecuado");
@@ -77,39 +77,15 @@ public class Menus {
 			}
 		}
 		
-		if(opcion == 1)
-			genero = true;
-		else if(opcion == 2)
-			genero = false;
-		
-		return genero;
+		return opcion;
 	}
 
-	public int NIT()
+	public String NIT()
 	{
-		int NIT = 0;
-		boolean valido = false;
-		while(valido == false)
-		{
-			try {
-				System.out.println("Ingrese el NIT (sin gui\u00F3n)");
-				NIT = input.nextInt();
-				if(NIT > 0)
-					valido = true;
-				else {
-					System.out.println("Else");
-					throw new InputMismatchException();
-					//System.out.println("Por favor ingresar un valor adecuado");	
-				}
-			} catch (InputMismatchException e) 
-			{
-				//System.out.println("Por favor ingresar un valor adecuado");
-				System.out.println("catch");
-				input.next();
-			}
-			finally
-			{}
-		}
+		String NIT = "";
+		System.out.println("Ingrese el NIT");
+		NIT = input.nextLine();
+		
 		return NIT;
 	}
 
@@ -152,32 +128,25 @@ public class Menus {
 		return direccion;
 	}
 	
-	public boolean casado()
-	{
-		boolean casado = false;
-		int opcion = 0;
+	public String estadocivil() {
+		String estadocivil = "";
 		boolean valido = false;
 		while (valido == false) 
 		{
 			try {
-				System.out.println("\u00BFEsta casado(a)?");
-				System.out.println("1: Si\t2: No");
-				opcion = input.nextInt();
-				if(opcion == 1 || opcion == 2)
+				System.out.println("Estado civil");
+				estadocivil = input.nextLine().toLowerCase();
+				if(estadocivil.contains("casad") || estadocivil.contains("solter"))
 					valido = true;
 				else
-					System.out.println("Por favor ingresar un valor adecuado");
+					throw new InputMismatchException();
 			} catch (InputMismatchException e) 
 			{
 				System.out.println("Por favor ingresar un valor adecuado");
 				input.next();
 			}
 		}
-		if(opcion == 1)
-			casado = true;
-		else if(opcion == 2)
-			casado = false;
-		return casado;
+		return estadocivil;
 	}
 	
 	private int getday(int ultimodia)
@@ -263,21 +232,63 @@ public class Menus {
 		return ultimodia;
 	}
 
-	public void mostraritem(String categoria)
+	public int mostraritem(String categoria,int cantidad)
 	{
 		System.out.println("MUESTRA DE "+categoria.toUpperCase());
+		int codigo = 0;
+		boolean valido = false;
+		if (cantidad == 0)
+			System.out.println("No hay "+categoria+"s por mostrar");
+		else
+		{
+			while (valido == false) 
+			{
+				try 
+				{
+					System.out.println("Ingrese el código del "+categoria+" que desea visualizar:");
+					codigo = input.nextInt();
+					if(codigo < cantidad)
+						valido = true;
+					else
+						throw new InputMismatchException();
+				} catch (InputMismatchException e) 
+				{
+					System.out.println("Por favor ingresar un valor adecuado");
+					valido = false;
+					input.next();
+				}
+			}
+		}
 		
+		return codigo;
 	}
 
-	public void buscaritem(String categoria)
-	{
+	public void buscaritem(String categoria) {
 		System.out.println("BUSCAR UN "+ categoria.toUpperCase());
 		System.out.println("Ingrese el campo que desea buscar para encontrar el " + categoria);
 	}
 
-	public void borraritem(String categoria)
+	public int borraritem(String categoria, int cantidad)
 	{
-		System.out.println("BORRAR O REHABILITAR "+categoria.toUpperCase());
+		boolean valido = false;
+		int codigo = 0;
+		System.out.println("BORRAR O REHABILITAR "+categoria.toUpperCase()+"S");
+		while (valido == false) 
+		{
+			try {
+				System.out.println("Ingrese el c\u00F3digo del "+categoria+" a borrar o rehabilitar:");
+				codigo = input.nextInt();
+				if(codigo > 0 && codigo < cantidad)
+					valido = true;
+				else
+					throw new InputMismatchException();
+			} catch (InputMismatchException e) 
+			{
+				System.out.println("Por favor ingrese un valor adecuado.");
+				input.next();
+			}
+		}
+		return codigo;
 	}
 
 	public void modificaritem(String categoria)
@@ -373,12 +384,12 @@ public class Menus {
 		return fecha;
 	}
 
-	public int cantidad(String categoria) {
+	public int cantidad(String categoriaS) {
 		int cantidad = 0;
 		boolean valido = false;
 		while (valido == false) {
 			try {
-				System.out.println("Ingrese la cantidad " + categoria);
+				System.out.println("Ingrese la cantidad de " + categoriaS);
 				cantidad = input.nextInt();
 				if(cantidad > 0)
 					valido = true;
@@ -480,5 +491,126 @@ public class Menus {
 		return opcion;
 	}
 	
+	public String talla() {
+		String opcion = "";
+		boolean valido = false;
+		while (valido == false) 
+		{
+			try 
+			{
+				System.out.println("Ingrese la talla");
+				System.out.println("Small\tMedium\tLarge");
+				opcion = input.nextLine().toLowerCase();
+				if(opcion.equals("small") || opcion.equals("medium") || opcion.equals("large"))
+					valido = true;
+				else
+					throw new InputMismatchException();
+			} catch (InputMismatchException e) 
+			{
+				System.out.println("Por favor ingresar un valor adecuado");
+				valido = false;
+				input.next();
+			}
+		}
+		return opcion;
+	}
+
+	public String tipo() {
+		String opcion = "";
+		boolean valido = false;
+		while (valido == false) 
+		{
+			try 
+			{
+				System.out.println("Ingrese la talla");
+				System.out.println("Mountain\tRoute\tCity\tKids");
+				opcion = input.nextLine().toLowerCase();
+				if(opcion.equals("mountain") || opcion.equals("route") || opcion.equals("city") || opcion.equals("kids"))
+					throw new InputMismatchException();
+				else
+					valido = true;
+			} catch (InputMismatchException e) 
+			{
+				System.out.println("Por favor ingresar un valor adecuado");
+				valido = false;
+				input.next();
+			}
+		}
+		return opcion;
+	}
+
+	public String fabricante() {
+		input.nextLine();
+		System.out.println("Ingrese el fabricante:");
+		String sinput = input.nextLine();
+		return sinput;
+	}
+
+	public String descripcion() {
+		boolean valido = false;
+		String sinput = "";
+		int limite = 200;
+		while (valido == false) 
+		{
+			System.out.println("Ingrese descripcion ("+limite+" caracteres maximo)");
+			sinput = input.nextLine();
+			if(sinput.length() <= limite)
+				valido = true;
+			else
+				System.out.println("Por favor ingrese hasta "+limite+" caracteres");
+		}
+		return sinput;
+	}
 	
+	public double decimal(String categoria) {
+		boolean valido = false;
+		double fprecio = 0.00;
+		while (valido == false) 
+		{
+			try 
+			{
+				System.out.println("Ingrese "+categoria.toLowerCase());
+				fprecio = input.nextFloat();
+				valido = true;
+			} catch (InputMismatchException e) 
+			{
+				System.out.println("Por favor ingresar un valor adecuado");
+				valido = false;
+				input.next();
+			}
+		}
+		return fprecio;
+	}
+
+	public boolean esbici() {
+		String opcion = "";
+		boolean bici = true;
+		boolean valido = false;
+		
+		while (valido == false) 
+		{
+			try 
+			{
+				input.nextLine();
+				System.out.println("\u00BFEs bicicleta?");
+				System.out.println("Si\tNo");
+				opcion = input.nextLine();
+				if(opcion.toLowerCase().equals("si") || opcion.toLowerCase().equals("no"))
+					valido = true;
+				else
+					throw new InputMismatchException();
+			} catch (InputMismatchException e) 
+			{
+				System.out.println("Por favor ingresar un valor adecuado");
+				valido = false;
+				input.next();
+			}
+		}
+		if(opcion.toLowerCase().equals("si"))
+			bici = true;
+		else if(opcion.toLowerCase().equals("no"))
+			bici = false;
+		
+		return bici;
+	}
 }

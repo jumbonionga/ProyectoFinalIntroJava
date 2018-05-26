@@ -6,7 +6,7 @@ public class Empleado {
 	private String cargo;
 	private LocalDate nacimiento;
 	private LocalDate contratacion;
-	private boolean masculino;
+	private String masculino;
 	private int telefono;
 	private String correo;
 	private String direccion;
@@ -20,7 +20,7 @@ public class Empleado {
 		cargo = "";
 		nacimiento = LocalDate.now();
 		contratacion = LocalDate.now();
-		masculino = false;
+		masculino = "";
 		telefono = -1;
 		correo = "";
 		direccion = "";
@@ -84,17 +84,12 @@ public class Empleado {
 		return this.contratacion;
 	}
 
-	public void setgenero(boolean genero) {
+	public void setgenero(String genero) {
 		this.masculino = genero;
 	}
 	
 	public String getgenero() {
-		String genero = "";
-		if(this.masculino == true)
-			genero = "Masculino";
-		else if(this.masculino == false)
-			genero = "Femenino";
-		return genero;
+		return this.getgenero();
 	}
 
 	public void settelefono(int telefono)

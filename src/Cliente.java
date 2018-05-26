@@ -4,12 +4,12 @@ public class Cliente {
 	private int codigo;
 	private String nombre;
 	private LocalDate nacimiento;
-	private boolean masculino;
-	private int NIT;
+	private String genero;
+	private String NIT;
 	private int telefono;
 	private String correo;
 	private String direccion;
-	private boolean casado;
+	private String estadocivil;
 	private boolean borrado = false;
 	
 	public Cliente()
@@ -17,12 +17,12 @@ public class Cliente {
 		codigo = -1;
 		nombre = "";
 		nacimiento = LocalDate.now();
-		masculino = false;
-		NIT = -1;
+		genero = "";
+		NIT = "";
 		telefono = -1;
 		correo = "";
 		direccion = "";
-		casado = false;
+		estadocivil = "";
 	}
 	
 	public void setnombre(String nombre)
@@ -45,27 +45,22 @@ public class Cliente {
 		return this.nacimiento;
 	}
 
-	public void setgenero(boolean genero)
+	public void setgenero(String genero)
 	{
-		this.masculino = genero;
+		this.genero = genero;
 	}
 	
 	public String getgenero()
 	{
-		String genero = "";
-		if(this.masculino == true)
-			genero = "Masculino";
-		else if(this.masculino == false)
-			genero = "Femenino";
-		return genero;
+		return this.genero;
 	}
 	
-	public void setNIT(int NIT)
+	public void setNIT(String NIT)
 	{
 		this.NIT = NIT;
 	}
 	
-	public int getNIT()
+	public String getNIT()
 	{
 		return this.NIT;
 	}
@@ -100,19 +95,14 @@ public class Cliente {
 		return this.direccion;
 	}
 
-	public void setcasado(boolean casado)
+	public void setestadocivil(String estadocivil)
 	{
-		this.casado = casado;
+		this.estadocivil = estadocivil;
 	}
 	
-	public String getcasado()
+	public String getestadocivil()
 	{
-		String casado = "";
-		if(this.casado == true)
-			casado = "Si";
-		else if(this.casado == false)
-			casado = "No";
-		return casado;
+		return this.estadocivil;
 	}
 
 	public void setcodigo(int codigo)
